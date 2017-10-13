@@ -8,6 +8,3 @@ EXPOSE 8000
 WORKDIR /app
 CMD ["gunicorn", "--access-logfile", "-", "--bind", "0.0.0.0:8000", "config.wsgi:application"]
 RUN mkdir -p /app/var/log
-ONBUILD ADD requirements.txt setup.cfg .pylintrc /app/
-ONBUILD RUN pip install -U pip && pip install -r requirements.txt && rm -rf /root/.cache
-ONBUILD ADD src /app/src
