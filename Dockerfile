@@ -9,6 +9,8 @@ EXPOSE 8000
 WORKDIR /app
 CMD ["gunicorn", "--access-logfile", "-", "--bind", "0.0.0.0:8000", "config.wsgi:application"]
 RUN pip install --no-cache-dir pipenv
+ADD entrypoint.sh entrypoint.sh
+ENTRYPOINT ["/app/entrypoint.sh"]
 RUN \
   echo 'deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main' \
     > /etc/apt/sources.list.d/postgresql.list \
