@@ -7,7 +7,7 @@ ENV BASE_DIR=/app/src
 ENV PIPENV_VENV_IN_PROJECT=1
 EXPOSE 8000
 WORKDIR /app
-CMD ["gunicorn", "--access-logfile", "-", "--bind", "0.0.0.0:8000", "config.wsgi:application"]
+CMD ["gunicorn", "--access-logfile", "-", "--bind", "0.0.0.0:8000", "--threads", "4", "config.wsgi:application"]
 RUN pip install --no-cache-dir pipenv
 ADD entrypoint.sh entrypoint.sh
 ENTRYPOINT ["/app/entrypoint.sh"]
